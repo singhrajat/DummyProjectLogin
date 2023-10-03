@@ -12,6 +12,8 @@ import Register from './src/Screens/Register/Register';
 const Stack = createNativeStackNavigator();
 const MyContext = React.createContext("context");
 
+
+
 const App = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
