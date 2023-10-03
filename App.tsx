@@ -7,6 +7,7 @@ import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './src/Redux/Store';
 import Register from './src/Screens/Register/Register';
+import OtpVerification from './src/Screens/OtpVerification/OtpVerification';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,10 @@ const App = () => {
            <Stack.Screen
               name="Register"
               component={Register}
+            />
+         <Stack.Screen
+              name="OtpVerification"
+              component={OtpVerification}
             />
           </Stack.Navigator>
         </NavigationContainer>

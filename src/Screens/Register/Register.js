@@ -71,6 +71,8 @@ export default function Register(props) {
         setTimeout(() => {
           Utils.SnackSuccess(res?.data?.message);
         }, 100);
+
+        navigation.navigate('OtpVerification')
       } else
         setTimeout(() => {
           Utils.SnackError(res?.data?.message);
