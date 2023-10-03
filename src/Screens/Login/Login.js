@@ -31,8 +31,14 @@ export default function Login(props) {
     if (Object.keys(loginRes)?.length > 0) {
       if (loginRes?.data?.status) {
         console.log('get res', loginRes?.data?.message);
+        setTimeout(() => {
+          Utils.SnackSuccess(res?.data?.message);
+        }, 100);
       } else {
         console.log('get error ', loginRes?.data?.message);
+        setTimeout(() => {
+          Utils.SnackError(res?.data?.message);
+        }, 100);
         dispatch(resetLogin());
       }
     }
@@ -40,13 +46,15 @@ export default function Login(props) {
 
   const isValidate = () => {
     if (email?.trim()?.length < 1) {
-      console.log('Please enter email');
+      Utils.SnackError('Please enter email')
+    
       return false;
     } else if (!Utils.isEmailValid(email.trim())) {
-      console.log('invalid Email');
+      Utils.SnackError('Invalid Email')
+   
       return false;
     } else if (password?.trim()?.length < 1) {
-      console.log('Please enter password');
+      Utils.SnackError('Please enter password')
       return false;
     }
 

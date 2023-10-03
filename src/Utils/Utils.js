@@ -7,7 +7,7 @@ export default UtilsFunctions = {
   },
 
   SnackSuccess: function (data) {
-  return  Snackbar.show({
+    return Snackbar.show({
       text: data,
       duration: Snackbar.LENGTH_SHORT,
       backgroundColor: 'green',
@@ -15,7 +15,7 @@ export default UtilsFunctions = {
     });
   },
   SnackError: function (data) {
-   return Snackbar.show({
+    return Snackbar.show({
       text: data,
       duration: Snackbar.LENGTH_SHORT,
       backgroundColor: 'red',

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {
-    Keyboard,
+  Keyboard,
   Platform,
   Pressable,
   StyleSheet,
@@ -28,30 +28,28 @@ export default function Register(props) {
 
   const dispatch = useDispatch();
 
- 
-
   const isValidate = () => {
     if (email?.trim()?.length < 1) {
-      console.log('Please enter email');
+      Utils.SnackError('Please enter email')
       return false;
     } else if (!Utils.isEmailValid(email.trim())) {
-      console.log('invalid Email');
+      Utils.SnackError('invalid Email')
       return false;
     } else if (countryCode.trim()?.length < 1) {
-      console.log('Enter country code');
+      Utils.SnackError('Enter country code')
       return false;
     } else if (phone.trim()?.length != 10) {
-      console.log('Invalid phonenumber');
+      Utils.SnackError('Invalid phonenumber')
       return false;
     } else if (password?.trim()?.length < 1) {
-      console.log('Please enter password');
+      Utils.SnackError('Please enter password')
       return false;
     }
 
     return true;
   };
-  const clickRegister = async() => {
-    Keyboard.dismiss()
+  const clickRegister = async () => {
+    Keyboard.dismiss();
     if (isValidate()) {
       const body = {
         email: email,
@@ -64,19 +62,19 @@ export default function Register(props) {
         otp: '123456',
       };
 
-      const res= await userCheck({email:email})
+      const res = await userCheck({email: email});
 
-      console.log("res   ",res);
-      if(res?.data?.status)
-      {
+      console.log('res   ', res);
+      if (res?.data?.status) {
+        console.log('get res success', res?.data?.message);
 
-        console.log("get res success",res?.data?.message);
-
-      }
-      else
-      console.log("get res success");
-    
-
+        setTimeout(() => {
+          Utils.SnackSuccess(res?.data?.message);
+        }, 100);
+      } else
+        setTimeout(() => {
+          Utils.SnackError(res?.data?.message);
+        }, 100);
     }
   };
   return (
