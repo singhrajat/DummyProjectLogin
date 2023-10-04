@@ -56,7 +56,7 @@ export default function Register(props) {
         password: password,
         country_code: countryCode,
         phone_number: phone,
-        device_type: Platform.OS=='ios'?'ios':"a",
+        device_type: Platform.OS=='ios'?'ios':"ios",
         device_token: 'adbj',
         device_unique_id: '1',
       };

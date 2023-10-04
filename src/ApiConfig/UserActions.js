@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../ApiConfig/Axios'
 import Constants from '../Constant/Constants';
 
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';

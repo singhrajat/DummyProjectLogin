@@ -30,12 +30,10 @@ export default function Login(props) {
   useEffect(() => {
     if (Object.keys(loginRes)?.length > 0) {
       if (loginRes?.data?.status) {
-        console.log('get res', loginRes?.data?.message);
         setTimeout(() => {
           Utils.SnackSuccess(loginRes?.data?.message);
         }, 100);
       } else {
-        console.log('get error ', loginRes?.data?.message);
         setTimeout(() => {
           Utils.SnackError(loginRes?.data?.message);
         }, 100);

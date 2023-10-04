@@ -3,17 +3,15 @@ import {Keyboard, Text, View} from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
 import SubmitButton from '../../Common/SubmitButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {registerApi, registerResData} from '../../ApiConfig/UserActions';
+import {registerApi, registerResData, resetRegister} from '../../ApiConfig/UserActions';
 import Utils from '../../Utils/Utils';
 
 export default function OtpVerification(props) {
   const {navigation} = props;
   const body = props?.route?.params?.body;
-  console.log('body for register from params ', body);
   let otpInput = useRef(null);
   const [otpValue, setOtpValue] = useState('');
   const registerRes = useSelector(registerResData);
-  console.log("register response ",registerRes);
   const dispatch = useDispatch();
 
   const clickVerifyOtp = () => {
@@ -34,6 +32,7 @@ export default function OtpVerification(props) {
       if (registerRes?.data?.status) {
         Utils.SnackSuccess(registerRes?.data?.message);
       } else {
+        dispatch(resetRegister())
         setTimeout(() => {
           Utils.SnackError(registerRes?.data?.message);
         }, 100);
