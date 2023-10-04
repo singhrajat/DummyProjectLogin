@@ -56,15 +56,13 @@ export default function Register(props) {
         password: password,
         country_code: countryCode,
         phone_number: phone,
-        device_type: Platform.OS,
+        device_type: Platform.OS=='ios'?'ios':"a",
         device_token: 'adbj',
         device_unique_id: '1',
-        otp: '123456',
       };
 
       const res = await userCheck({email: email});
 
-      console.log('res   ', res);
       if (res?.data?.status) {
         console.log('get res success', res?.data?.message);
 
@@ -72,7 +70,9 @@ export default function Register(props) {
           Utils.SnackSuccess(res?.data?.message);
         }, 100);
 
-        navigation.navigate('OtpVerification')
+        navigation.navigate('OtpVerification',{
+          body:body
+        })
       } else
         setTimeout(() => {
           Utils.SnackError(res?.data?.message);

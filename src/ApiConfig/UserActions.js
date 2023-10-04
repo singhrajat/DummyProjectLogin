@@ -6,7 +6,10 @@ import EndUrls from './EndUrls';
 
 export const userCheck = async body => {
   try {
-    const res = await axios.post(Constants.BaseUrl + EndUrls.ep_usercheck, body);
+    const res = await axios.post(
+      Constants.BaseUrl + EndUrls.ep_usercheck,
+      body,
+    );
     return res;
   } catch (error) {
     console.log('catch error ', error);
@@ -24,8 +27,8 @@ export const loginApi = createAsyncThunk('loginApi', async body => {
 });
 export const registerApi = createAsyncThunk('registerApi', async body => {
   try {
-    console.log('body ', body);
     const res = await axios.post(Constants.BaseUrl + EndUrls.ep_register, body);
+
     return res;
   } catch (error) {
     console.log('catch error ', error);
@@ -36,8 +39,8 @@ const apiSlice = createSlice({
   name: 'apiSlice',
   initialState: {
     isLoading: false,
-    login: [],
-    register: [],
+    login: {},
+    register: {},
     isError: false,
   },
   reducers: {
@@ -45,7 +48,7 @@ const apiSlice = createSlice({
       state.login = {};
     },
     resetRegister: state => {
-      state.login = {};
+      state.register = {};
     },
   },
   extraReducers: builder => {
@@ -64,7 +67,7 @@ const apiSlice = createSlice({
     });
     builder.addCase(registerApi.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.login = action.payload;
+      state.register = action.payload;
     });
     builder.addCase(registerApi.rejected, (state, action) => {
       state.isError = true;

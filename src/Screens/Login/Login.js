@@ -32,12 +32,12 @@ export default function Login(props) {
       if (loginRes?.data?.status) {
         console.log('get res', loginRes?.data?.message);
         setTimeout(() => {
-          Utils.SnackSuccess(res?.data?.message);
+          Utils.SnackSuccess(loginRes?.data?.message);
         }, 100);
       } else {
         console.log('get error ', loginRes?.data?.message);
         setTimeout(() => {
-          Utils.SnackError(res?.data?.message);
+          Utils.SnackError(loginRes?.data?.message);
         }, 100);
         dispatch(resetLogin());
       }
