@@ -1,4 +1,4 @@
-import axios from '../ApiConfig/Axios'
+import axios from '../ApiConfig/Axios';
 import Constants from '../Constant/Constants';
 
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
@@ -9,6 +9,11 @@ export const userCheck = async body => {
     const res = await axios.post(
       Constants.BaseUrl + EndUrls.ep_usercheck,
       body,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
     );
     return res;
   } catch (error) {
@@ -19,7 +24,11 @@ export const userCheck = async body => {
 //--------APi with createAsyncThunk---------------------
 export const loginApi = createAsyncThunk('loginApi', async body => {
   try {
-    const res = await axios.post(Constants.BaseUrl + EndUrls.ep_login, body);
+    const res = await axios.post(Constants.BaseUrl + EndUrls.ep_login, body, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return res;
   } catch (error) {
     console.log('catch error ', error);
@@ -27,7 +36,15 @@ export const loginApi = createAsyncThunk('loginApi', async body => {
 });
 export const registerApi = createAsyncThunk('registerApi', async body => {
   try {
-    const res = await axios.post(Constants.BaseUrl + EndUrls.ep_register, body);
+    const res = await axios.post(
+      Constants.BaseUrl + EndUrls.ep_register,
+      body,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
 
     return res;
   } catch (error) {

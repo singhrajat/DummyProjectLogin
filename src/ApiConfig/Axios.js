@@ -6,7 +6,7 @@ var client = axios.create();
 client.interceptors.request.use(
   config => {
     if (config.authorization !== false) {
-      const token = false;
+      const token = false; // get token from storage and if available then added
       if (token) {
         config.headers.Authorization = 'Bearer ' + token;
       }
